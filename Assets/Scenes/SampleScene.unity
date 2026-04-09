@@ -162,8 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fd022149a9307746a5af70fbe8045dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 5
-  depth: 5
+  width: 6
+  depth: 7
   activeRooms: []
   roomToSpawn: {fileID: 6353933628782830004, guid: 5cc5dedf1bf7ef8498ef7b1ddbfdd0c5, type: 3}
   DebugMatrix: {fileID: 321711259}
@@ -499,15 +499,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3167459275284199492, guid: 5cc5dedf1bf7ef8498ef7b1ddbfdd0c5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3167459275284199492, guid: 5cc5dedf1bf7ef8498ef7b1ddbfdd0c5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3167459275284199492, guid: 5cc5dedf1bf7ef8498ef7b1ddbfdd0c5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 29.500004
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3167459275284199492, guid: 5cc5dedf1bf7ef8498ef7b1ddbfdd0c5, type: 3}
       propertyPath: m_LocalRotation.w

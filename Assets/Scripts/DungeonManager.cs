@@ -42,7 +42,6 @@ public class DungeonManager : MonoBehaviour
         }
 
         startPos = new Vector2Int(0, 0);
-        //StartCoroutine(GenerateMap(startPos, startPos, 1, 0));
         StartCoroutine(GenerateMapNew(startPos, 10));
     }
 
@@ -50,37 +49,6 @@ public class DungeonManager : MonoBehaviour
     void Update()
     {
 
-    }
-
-    private IEnumerator GenerateMap(Vector2Int current, Vector2Int previous, int branchChance, int currentCount)
-    {
-        int count = currentCount++;
-        if (map[current.x, current.y].getIsVisited() == false)
-        {
-            map[current.x, current.y].setIsVisited(true);
-            map[current.x, current.y].SetRoomType(DungeonData.RoomType.Normal);
-
-            GameObject createdRoom = Instantiate(roomToSpawn, new Vector3(current.x * 60, 0, current.y * 60), Quaternion.identity);
-            createdRoom.name = currentCount.ToString();
-
-            yield return new WaitForSeconds(2f);
-
-            Vector2Int next;
-
-            do
-            {
-                next = GetUnvisitedCells(current);
-                Debug.Log("Je suis en " + current.x + " / " + current.y + " -> et je génère en -> " + next.x + " / " + next.y);
-                if (next.x != -1)
-                {
-                    StartCoroutine(GenerateMap(next, current, branchChance, currentCount));
-                    //GenerateMap(next, current, branchChance);
-                }
-            }
-            while (next.x != -1);
-
-            DebugMatrix.SetListToAffich(map, width, depth);
-        }
     }
 
     private IEnumerator GenerateMapNew(Vector2Int start, int maxRoomCount)
@@ -92,7 +60,7 @@ public class DungeonManager : MonoBehaviour
 
         while(currentCount < maxRoomCount)
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.5f);
             Vector2Int dir = GetRandomDirection(current);
 
             if (dir.x != -1 && dir.y != -1)
@@ -105,15 +73,15 @@ public class DungeonManager : MonoBehaviour
                     bool roomExists = map[next.x, next.y] != null;
                     if (roomExists)
                     {
-
                         map[next.x, next.y] = new DungeonData();
                         map[next.x, next.y].SetRoomType(DungeonData.RoomType.Normal);
+                        Debug.Log("Je suis en " + current.x + " / " + current.y + " -> et je génère en -> " + next.x + " / " + next.y);
 
                         activeRooms.Add(next);
                         current = next;
 
-                        Debug.Log("Je suis en " + current.x + " / " + current.y + " -> et je génère en -> " + next.x + " / " + next.y);
-                        GameObject createdRoom = Instantiate(roomToSpawn, new Vector3(current.x * 60, 0, current.y * 60), Quaternion.identity);
+                        GameObject createdRoom = Instantiate(roomToSpawn, new Vector3(current.x * 30, 0, current.y * 30), Quaternion.identity);
+                        createdRoom.GetComponent<DungeonRoom>().SetDungeonData(map[current.x, current.y]);
                         createdRoom.name = currentCount.ToString();
                         map[current.x, current.y].setIsVisited(true);
                         currentCount++;
@@ -185,60 +153,6 @@ public class DungeonManager : MonoBehaviour
         return allDirections[Random.Range(0, allDirections.Count)] + currentCell;
     }
 
-    private Vector2Int GetUnvisitedCells(Vector2Int currentCell)
-    {
-        int x = currentCell.x;
-        int y = currentCell.y;
-
-        List<Vector2Int> allDirections = new List<Vector2Int>();
-
-        if (x + 1 < width)
-        {
-            DungeonData cellToRight = map[x + 1, y];
-
-            if (cellToRight.getIsVisited() == false)
-            {
-                allDirections.Add(directions[0]);
-            }
-        }
-
-        if (x - 1 >= 0)
-        {
-            DungeonData cellToLeft = map[x - 1, y];
-
-            if (cellToLeft.getIsVisited() == false)
-            {
-                allDirections.Add(directions[1]);
-            }
-        }
-
-        if (y + 1 < depth)
-        {
-            DungeonData cellToFront = map[x, y + 1];
-
-            if (cellToFront.getIsVisited() == false)
-            {
-                allDirections.Add(directions[2]);
-            }
-        }
-
-        if (y - 1 >= 0)
-        {
-            DungeonData cellToBack = map[x, y - 1];
-
-            if (cellToBack.getIsVisited() == false)
-            {
-                allDirections.Add(directions[3]);
-            }
-        }
-
-        if (allDirections.Count == 0)
-        {
-            Debug.Log("zehbi y a pas la place");
-            return new Vector2Int(-1, -1);
-        }
-        return allDirections[Random.Range(0, allDirections.Count)] + currentCell;
-    }
 
 
     private bool IsInsideGrid(Vector2Int pos)

@@ -2,17 +2,45 @@ using UnityEngine;
 
 public class DungeonRoom : MonoBehaviour
 {
-    public enum RoomType { None, Start, Normal, Boss }
-    private bool IsVisited;
-    private RoomType roomType;
+    public enum RoomObjective { None, Enemy, Puzzle, Rest }
+    private RoomObjective roomObjective;
+    /// <summary>
+    /// /////////////////
+    /// </summary>
+    [SerializeField]
+    private DungeonData dungeonData;
 
-    public RoomType GetRoomType()
+    [SerializeField]
+    private GameObject leftDoor;
+    [SerializeField]
+    private GameObject rightDoor;
+    [SerializeField]
+    private GameObject topDoor;
+    [SerializeField]
+    private GameObject downDoor;
+
+    public RoomObjective GetRoomObjective()
     {
-        return roomType;
+        return roomObjective;
     }
 
-    public void SetRoomType(RoomType type)
+    public void SetRoomObjective(RoomObjective Objective)
     {
-        roomType = type;
+        roomObjective = Objective;
+    }
+
+    public DungeonData GetDungeonData()
+    {
+        return dungeonData;
+    }
+
+    public void SetDungeonData(DungeonData data)
+    {
+        dungeonData = data;
+    }
+
+    public void ClearLeftDoor()
+    {
+
     }
 }

@@ -7,6 +7,7 @@ public class DungeonData
     public enum RoomType { None, Start, Normal, Boss }
     private bool isVisited = false;
     private RoomType roomType = RoomType.None;
+    public DungeonRoom room;
 
     public RoomType GetRoomType()
     {
