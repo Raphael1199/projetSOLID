@@ -38,4 +38,15 @@ public class Item : MonoBehaviour
     public virtual void UseItem(PlayerCharacter player)
     {
     }
+
+    // à changer avec des layers
+    private void OnCollisionEnter(Collision collision)
+    {
+        print("ça touche");
+        TryGetComponent<PlayerCharacter>(out PlayerCharacter player);
+        if (player != null)
+        {
+            player.GrabItem(this);
+        }
+    }
 }

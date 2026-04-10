@@ -57,4 +57,9 @@ public class PlayerCharacter : LivingObject
     {
         equipements.EquipItem(equipement);
     }
+
+    public void GrabItem(Item itemPickedUp)
+    {
+        inventory.AddItem(itemPickedUp);
+    }
 }
