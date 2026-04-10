@@ -164,9 +164,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 6
   depth: 7
+  roomAmount: 3
   activeRooms: []
   roomToSpawn: {fileID: 6353933628782830004, guid: 5cc5dedf1bf7ef8498ef7b1ddbfdd0c5, type: 3}
   DebugMatrix: {fileID: 321711259}
+  activeRoomsDebug: []
 --- !u!4 &321711261
 Transform:
   m_ObjectHideFlags: 0

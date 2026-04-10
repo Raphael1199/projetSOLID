@@ -6,6 +6,14 @@ public class DungeonRoom : MonoBehaviour
     private RoomObjective roomObjective;
     /// <summary>
     /// /////////////////
+    /// 
+    /// 
+    /// 
+    /// 
+    /// 
+    /// 
+    /// 
+    /// 
     /// </summary>
     [SerializeField]
     private DungeonData dungeonData;
@@ -18,6 +26,8 @@ public class DungeonRoom : MonoBehaviour
     private GameObject topDoor;
     [SerializeField]
     private GameObject downDoor;
+
+    private GameObject[] doorToOpen = new GameObject[4];
 
     public RoomObjective GetRoomObjective()
     {
@@ -41,6 +51,51 @@ public class DungeonRoom : MonoBehaviour
 
     public void ClearLeftDoor()
     {
+        leftDoor.SetActive(false);
+    }
 
+    public void ClearRightDoor()
+    {
+        rightDoor.SetActive(false);
+    }
+
+    public void ClearTopDoor()
+    {
+        topDoor.SetActive(false);
+    }
+
+    public void ClearDownDoor()
+    {
+        downDoor.SetActive(false);
+    }
+
+    /// <summary>
+    /// ///////////////////////////////////////////////
+    /// 
+    /// 
+    /// 
+    /// 
+    /// 
+    /// 
+    /// 
+    /// 
+    /// </summary>
+    public void OpenAllRequiredDoor()
+    {
+        foreach (var item in doorToOpen)
+        {
+            if (item != null)
+            {
+                item.SetActive(false);
+            }
+        }
+    }
+
+    private void CloseAllDoor()
+    {
+        leftDoor.SetActive(true);
+        rightDoor.SetActive(true);
+        topDoor.SetActive(true);
+        downDoor.SetActive(true);
     }
 }

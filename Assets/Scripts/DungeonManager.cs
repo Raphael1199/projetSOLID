@@ -10,8 +10,11 @@ public class DungeonManager : MonoBehaviour
     [SerializeField]
     private int depth;
     [SerializeField]
-    private DungeonData[,] map;
+    private int roomAmount;
     private Vector2Int startPos;
+    
+    [SerializeField]
+    private DungeonData[,] map;
 
     [SerializeField]
     private List<Vector2Int> activeRooms = new List<Vector2Int>();
@@ -28,6 +31,9 @@ public class DungeonManager : MonoBehaviour
     //debug
     public DebugMatrix DebugMatrix;
 
+    public List<DungeonRoom> activeRoomsDebug = new List<DungeonRoom>();
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -42,7 +48,7 @@ public class DungeonManager : MonoBehaviour
         }
 
         startPos = new Vector2Int(0, 0);
-        StartCoroutine(GenerateMapNew(startPos, 10));
+        StartCoroutine(GenerateMapNew(startPos, roomAmount));
     }
 
     // Update is called once per frame
@@ -54,6 +60,7 @@ public class DungeonManager : MonoBehaviour
     private IEnumerator GenerateMapNew(Vector2Int start, int maxRoomCount)
     {
         Vector2Int current = start;
+        Vector2Int previous = start;
         //activeRooms.Add(current);
 
         int currentCount = 0;
@@ -75,15 +82,32 @@ public class DungeonManager : MonoBehaviour
                     {
                         map[next.x, next.y] = new DungeonData();
                         map[next.x, next.y].SetRoomType(DungeonData.RoomType.Normal);
-                        Debug.Log("Je suis en " + current.x + " / " + current.y + " -> et je génère en -> " + next.x + " / " + next.y);
+
+
+                        //Debug.Log("Je suis en " + current.x + " / " + current.y + " -> et je génère en -> " + next.x + " / " + next.y);
+
 
                         activeRooms.Add(next);
+
+                        previous = current;
                         current = next;
 
                         GameObject createdRoom = Instantiate(roomToSpawn, new Vector3(current.x * 30, 0, current.y * 30), Quaternion.identity);
-                        createdRoom.GetComponent<DungeonRoom>().SetDungeonData(map[current.x, current.y]);
+
+                        //createdRoom.GetComponent<DungeonRoom>().SetDungeonData(map[current.x, current.y]);
                         createdRoom.name = currentCount.ToString();
+
+                        map[current.x, current.y].SetRoom(createdRoom.GetComponent<DungeonRoom>());
                         map[current.x, current.y].setIsVisited(true);
+
+                        activeRoomsDebug.Add(createdRoom.GetComponent<DungeonRoom>());
+
+                        //Debug.Log(map[current.x, current.y].GetRoom());
+                        //print("-----------------------------------------");
+                        //Debug.Log(map[previous.x, previous.y].GetRoom());
+
+                        ClearWalls(previous, current);
+
                         currentCount++;
                     }
                 }
@@ -165,5 +189,40 @@ public class DungeonManager : MonoBehaviour
         return directions[Random.Range(0, directions.Length)];
     }
 
+    private void ClearWalls(Vector2Int previousCell, Vector2Int currentCell)
+    {
+        if (map[previousCell.x, previousCell.y].GetRoom() == null || map[currentCell.x, currentCell.y].GetRoom() == null)
+        {
+            return;
+        }
+
+        if (previousCell.x > currentCell.x)
+        {
+            map[previousCell.x, previousCell.y].GetRoom().ClearRightDoor();
+            map[currentCell.x, currentCell.y].GetRoom().ClearLeftDoor();
+            return;
+        }
+
+        if (previousCell.x < currentCell.x)
+        {
+            map[previousCell.x, previousCell.y].GetRoom().ClearLeftDoor();
+            map[currentCell.x, currentCell.y].GetRoom().ClearRightDoor();
+            return;
+        }
+
+        if (previousCell.y > currentCell.y)
+        {
+            map[previousCell.x, previousCell.y].GetRoom().ClearTopDoor();
+            map[currentCell.x, currentCell.y].GetRoom().ClearDownDoor();
+            return;
+        }
+
+        if (previousCell.y < currentCell.y)
+        {
+            map[previousCell.x, previousCell.y].GetRoom().ClearDownDoor();
+            map[currentCell.x, currentCell.y].GetRoom().ClearTopDoor();
+            return;
+        }
+    }
 
 }

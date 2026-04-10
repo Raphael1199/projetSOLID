@@ -7,7 +7,7 @@ public class DungeonData
     public enum RoomType { None, Start, Normal, Boss }
     private bool isVisited = false;
     private RoomType roomType = RoomType.None;
-    public DungeonRoom room;
+    private DungeonRoom room;
 
     public RoomType GetRoomType()
     {
@@ -27,5 +27,15 @@ public class DungeonData
     public void setIsVisited(bool isVisited)
     {
         this.isVisited = isVisited;
+    }
+
+    public DungeonRoom GetRoom()
+    {
+        return room;
+    }
+
+    public void SetRoom(DungeonRoom room)
+    {
+        this.room = room;
     }
 }

@@ -1171,7 +1171,7 @@ GameObject:
   - component: {fileID: 7621336750450578514}
   - component: {fileID: 6686482520481620261}
   m_Layer: 0
-  m_Name: porte
+  m_Name: porteDroite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1387,7 +1387,7 @@ GameObject:
   - component: {fileID: 2007341998093337558}
   - component: {fileID: 7590853006788879136}
   m_Layer: 0
-  m_Name: porte
+  m_Name: porteTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1439,7 +1439,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: ca8c928f6ef5cb74c84a535aa2a419b7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2110,12 +2110,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e79d5be649a78c44a986d2aba1f36b85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonData:
-    room: {fileID: 0}
-  door1: {fileID: 7595280949464638063}
-  door2: {fileID: 3805799473076895798}
-  door3: {fileID: 7697315916392309584}
-  door4: {fileID: 4802686607038285685}
+  leftDoor: {fileID: 7595280949464638063}
+  rightDoor: {fileID: 3805799473076895798}
+  topDoor: {fileID: 4802686607038285685}
+  downDoor: {fileID: 7697315916392309584}
 --- !u!1 &6479822779325685552
 GameObject:
   m_ObjectHideFlags: 0
@@ -3140,7 +3138,7 @@ GameObject:
   - component: {fileID: 632428696694694425}
   - component: {fileID: 3322520093095165222}
   m_Layer: 0
-  m_Name: porte
+  m_Name: porteGauche
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3248,7 +3246,7 @@ GameObject:
   - component: {fileID: 8295420960309676085}
   - component: {fileID: 6509717807788139381}
   m_Layer: 0
-  m_Name: porte
+  m_Name: porteDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
