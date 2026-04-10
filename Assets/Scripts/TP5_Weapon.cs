@@ -1,7 +1,6 @@
-using TP5;
 using UnityEngine;
 
-public class TP5_Weapon : Equipement
+public class Weapon : Equipement
 {
     private int damage;
     private float range;
@@ -17,7 +16,7 @@ public class TP5_Weapon : Equipement
     }
 
     // Méthode spécifique
-    public override void UseItem(Player player)
+    public override void UseItem(PlayerCharacter player)
     {
         player.EquipItem(this);
     }

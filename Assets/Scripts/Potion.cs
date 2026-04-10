@@ -1,4 +1,3 @@
-using TP5;
 using UnityEngine;
 
 public class Potion : Item
@@ -18,7 +17,7 @@ public class Potion : Item
     }
 
     // Méthode spéficique
-    public override void UseItem(Player player)
+    public override void UseItem(PlayerCharacter player)
     {
         // Logique d'utilisation d'une potion
         player.RestoreHealth(healthRestored);

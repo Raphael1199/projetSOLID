@@ -1,4 +1,3 @@
-using TP5;
 using UnityEngine;
 
 public class Armor : Equipement
@@ -20,7 +19,7 @@ public class Armor : Equipement
     }
 
     // Mérhode spécifique
-    public override void UseItem(Player player)
+    public override void UseItem(PlayerCharacter player)
     {
         player.EquipItem(this);
     }

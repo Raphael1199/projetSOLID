@@ -3,21 +3,24 @@ using UnityEngine;
 public class LivingObject : MonoBehaviour
 {
     [Header("Living")]
-    public const int DEFAULT_HP = 13;
-    [SerializeField] private int hp = DEFAULT_HP;
+    [SerializeField] private int hp;
+    [SerializeField] private int maxHealth = 20;
     [SerializeField] private FX hitFX = null;
     [SerializeField] private FX killFX = null;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
-        
+        hp = maxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
+    public float getHealth()
     {
-        
+        return hp;
+    }
+
+    public float getMaxHealth()
+    {
+        return maxHealth;
     }
 
 
@@ -42,12 +45,5 @@ public class LivingObject : MonoBehaviour
     {
         hp -= dmg;
     }
-
-#if UNITY_EDITOR
-    private void OnMouseDown()
-    {
-        //Hit(3);
-    }
-#endif
 
 }

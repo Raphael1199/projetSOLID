@@ -1,44 +1,43 @@
+using System;
 using System.Collections.Generic;
 
-namespace TP5
+[Serializable]
+public class Inventory
 {
-    public class Inventory
+    private List<Item> items = new List<Item>();
+    private int itemCount = 0;
+
+    // Getter
+    public List<Item> getItems()
     {
-        private List<Item> items = new List<Item>();
-        private int itemCount = 0;
+        return items;
+    }
 
-        // Getter
-        public List<Item> getItems()
-        {
-            return items;
-        }
+    public int getItemCount()
+    {
+        return itemCount;
+    }
 
-        public int getItemCount()
-        {
-            return itemCount;
-        }
+    // Méthode spécifique
+    public void AddItem(Item item)
+    {
+        items.Add(item);
+        itemCount++;
+    }
 
-        // Méthode spécifique
-        public void AddItem(Item item)
-        {
-            items.Add(item);
-            itemCount++;
-        }
+    public void RemoveItem(int index)
+    {
+        items.RemoveAt(index);
+        itemCount--;
+    }
 
-        public void RemoveItem(int index)
+    public float GetTotalWeight()
+    {
+        float totalWeight = 0;
+        for (int i = 0; i < itemCount; i++)
         {
-            items.RemoveAt(index);
-            itemCount--;
+            totalWeight += items[i].getWeight();
         }
-
-        public float GetTotalWeight()
-        {
-            float totalWeight = 0;
-            for (int i = 0; i < itemCount; i++)
-            {
-                totalWeight += items[i].getWeight();
-            }
-            return totalWeight;
-        }
+        return totalWeight;
     }
 }

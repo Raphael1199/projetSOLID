@@ -1,11 +1,10 @@
 using Unity.VisualScripting;
 using UnityEngine;
-using TP5;
 
 public class PlayerEquipements
 {
     // Des références directes aux objets équipés
-    private TP5_Weapon equippedWeapon;
+    private Weapon equippedWeapon;
 
     private Armor equippedHelmet;
     private Armor equippedChest;
@@ -13,7 +12,7 @@ public class PlayerEquipements
 
 
     // Getters
-    public TP5_Weapon GetWeapon()
+    public Weapon GetWeapon()
     {
         return equippedWeapon;
     }
