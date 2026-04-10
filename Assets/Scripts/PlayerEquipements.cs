@@ -1,13 +1,17 @@
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
+[Serializable]
 public class PlayerEquipements
 {
-    // Des références directes aux objets équipés
+    [SerializeField]
     private Weapon equippedWeapon;
 
+    [SerializeField]
     private Armor equippedHelmet;
+    [SerializeField]
     private Armor equippedChest;
+    [SerializeField]
     private Armor equippedBoots;
 
 
@@ -44,9 +48,9 @@ public class PlayerEquipements
     // Méthode spécifique
     public void EquipItem(Equipement itemToEquip)
     {
-        if (itemToEquip is TP5_Weapon)
+        if (itemToEquip is Weapon)
         {
-            equippedWeapon = (TP5_Weapon)itemToEquip;
+            equippedWeapon = (Weapon)itemToEquip;
         }
         else if (itemToEquip is Armor)
         {

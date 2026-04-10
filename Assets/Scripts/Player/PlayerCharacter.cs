@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class PlayerCharacter : LivingObject
 {
+    [SerializeField]
     private string playerName;
-    private int health;
-    private int maxHealth;
 
     [SerializeField]
     private Inventory inventory = new Inventory();
+
     [SerializeField]
     private PlayerEquipements equipements = new PlayerEquipements();
 
@@ -38,13 +38,13 @@ public class PlayerCharacter : LivingObject
 
     public void RestoreHealth(int amount)
     {
-        health = System.Math.Min(health + amount, maxHealth);
+        hp = System.Math.Min(hp + amount, maxHealth);
         System.Console.WriteLine($"{name} restaure {amount} points de vie!");
     }
 
     public void LoseHealth(int amount)
     {
-        health = System.Math.Max(health - amount, 0);
+        hp = System.Math.Max(hp - amount, 0);
         System.Console.WriteLine($"{name} perd {amount} points de vie!");
     }
 

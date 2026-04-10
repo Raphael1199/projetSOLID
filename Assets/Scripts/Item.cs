@@ -1,15 +1,22 @@
+using System;
+using UnityEngine;
 
-public abstract class Item
+[Serializable]
+public class Item : MonoBehaviour
 {
-    private string name;
+    [SerializeField]
+    private string itemName;
+    [SerializeField]
     private string description;
+    [SerializeField]
     private float weight;
+    [SerializeField]
     private int value;
 
     // Getters
     public string getName()
     {
-        return name;
+        return itemName;
     }
 
     public string getDescription()

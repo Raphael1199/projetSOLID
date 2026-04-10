@@ -4,19 +4,6 @@ public class DungeonRoom : MonoBehaviour
 {
     public enum RoomObjective { None, Enemy, Puzzle, Rest }
     private RoomObjective roomObjective;
-    /// <summary>
-    /// /////////////////
-    /// 
-    /// 
-    /// 
-    /// 
-    /// 
-    /// 
-    /// 
-    /// 
-    /// </summary>
-    [SerializeField]
-    private DungeonData dungeonData;
 
     [SerializeField]
     private GameObject leftDoor;
@@ -29,6 +16,9 @@ public class DungeonRoom : MonoBehaviour
 
     private GameObject[] doorToOpen = new GameObject[4];
 
+    [SerializeField]
+    private Transform playerSpawnPoint;
+
     public RoomObjective GetRoomObjective()
     {
         return roomObjective;
@@ -39,15 +29,11 @@ public class DungeonRoom : MonoBehaviour
         roomObjective = Objective;
     }
 
-    public DungeonData GetDungeonData()
+    public Vector3 GetSpawnPoint()
     {
-        return dungeonData;
+        return playerSpawnPoint.position;
     }
 
-    public void SetDungeonData(DungeonData data)
-    {
-        dungeonData = data;
-    }
 
     public void ClearLeftDoor()
     {

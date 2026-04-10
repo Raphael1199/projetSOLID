@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 [Serializable]
 public class Inventory
 {
+    [SerializeField]
     private List<Item> items = new List<Item>();
+    [SerializeField]
     private int itemCount = 0;
 
     // Getter

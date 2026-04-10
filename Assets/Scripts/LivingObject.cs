@@ -3,10 +3,10 @@ using UnityEngine;
 public class LivingObject : MonoBehaviour
 {
     [Header("Living")]
-    [SerializeField] private int hp;
-    [SerializeField] private int maxHealth = 20;
-    [SerializeField] private FX hitFX = null;
-    [SerializeField] private FX killFX = null;
+    [SerializeField] protected int hp;
+    [SerializeField] protected int maxHealth = 20;
+    [SerializeField] protected FX hitFX = null;
+    [SerializeField] protected FX killFX = null;
 
     private void Start()
     {

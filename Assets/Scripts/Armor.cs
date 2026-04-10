@@ -1,5 +1,8 @@
+using System;
 using UnityEngine;
 
+
+[Serializable]
 public class Armor : Equipement
 {
     private int defense;
