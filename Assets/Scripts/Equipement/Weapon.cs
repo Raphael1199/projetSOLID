@@ -5,8 +5,8 @@ using UnityEngine;
 [Serializable]
 public class Weapon : Equipement
 {
-    private int damage;
-    private float range;
+    protected int damage;
+    protected float range;
 
     // Getter
     public int getDamage() {
@@ -22,5 +22,10 @@ public class Weapon : Equipement
     public override void UseItem(PlayerCharacter player)
     {
         player.EquipItem(this);
+    }
+
+    public virtual void Attack(IAttackable target)
+    {
+        target.GetAttacked(damage);
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerCharacter : LivingObject
+public class PlayerCharacter : LivingObject , IAttackable
 {
     [SerializeField]
     private string playerName;
@@ -63,9 +63,13 @@ public class PlayerCharacter : LivingObject
         inventory.AddItem(itemPickedUp);
     }
 
+    public void GetAttacked(int damage)
+    {
+        LoseHealth(damage);
+    }
+
 
     // à changer avec des layers
-
     private void OnTriggerEnter(Collider other)
     {
         other.transform.TryGetComponent<Item>(out Item item);
