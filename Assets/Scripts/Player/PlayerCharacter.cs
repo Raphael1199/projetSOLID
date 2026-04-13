@@ -62,4 +62,18 @@ public class PlayerCharacter : LivingObject
     {
         inventory.AddItem(itemPickedUp);
     }
+
+
+    // à changer avec des layers
+
+    private void OnTriggerEnter(Collider other)
+    {
+        other.transform.TryGetComponent<Item>(out Item item);
+        if (item != null)
+        {
+            print("ça touche");
+            GrabItem(item);
+            item.GetPickedUp();
+        }
+    }
 }

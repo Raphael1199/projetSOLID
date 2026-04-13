@@ -33,14 +33,4 @@ public class Inventory
         items.RemoveAt(index);
         itemCount--;
     }
-
-    public float GetTotalWeight()
-    {
-        float totalWeight = 0;
-        for (int i = 0; i < itemCount; i++)
-        {
-            totalWeight += items[i].getWeight();
-        }
-        return totalWeight;
-    }
 }
