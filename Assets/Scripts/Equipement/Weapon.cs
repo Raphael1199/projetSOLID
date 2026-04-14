@@ -5,20 +5,22 @@ using UnityEngine;
 [Serializable]
 public class Weapon : Equipement
 {
+    [SerializeField]
     protected int damage;
-    protected float range;
+    [SerializeField]
+    protected int range;
 
     // Getter
     public int getDamage() {
         return damage;
     }
 
-    public float getRange()
+    public int getRange()
     {
         return range;
     }
 
-    // Méthode spécifique
+    // Mï¿½thode spï¿½cifique
     public override void UseItem(PlayerCharacter player)
     {
         player.EquipItem(this);

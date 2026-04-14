@@ -69,7 +69,7 @@ public class PlayerCharacter : LivingObject , IAttackable
     }
 
 
-    // à changer avec des layers
+    
     private void OnTriggerEnter(Collider other)
     {
         other.transform.TryGetComponent<Item>(out Item item);
