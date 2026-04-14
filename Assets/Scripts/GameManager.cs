@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     {
         if (instance == null)
         {
-            instance = FindFirstObjectByType<GameManager>();
+            instance =  FindAnyObjectByType<GameManager>();
             if (instance == null)
             {
                 GameObject gm = new GameObject();
