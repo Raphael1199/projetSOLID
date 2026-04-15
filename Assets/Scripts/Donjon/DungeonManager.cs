@@ -71,7 +71,7 @@ public class DungeonManager : MonoBehaviour
 
         while(currentCount < maxRoomCount)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.75f);
             Vector2Int dir = GetRandomDirection(current);
 
             if (dir.x != -1 && dir.y != -1)
@@ -88,7 +88,7 @@ public class DungeonManager : MonoBehaviour
                         map[next.x, next.y].SetRoomType(DungeonData.RoomType.Normal);
 
 
-                        //Debug.Log("Je suis en " + current.x + " / " + current.y + " -> et je génère en -> " + next.x + " / " + next.y);
+                        //Debug.Log("Je suis en " + current.x + " / " + current.y + " -> et je gï¿½nï¿½re en -> " + next.x + " / " + next.y);
 
 
                         activeRoomsData.Add(next);
@@ -118,7 +118,7 @@ public class DungeonManager : MonoBehaviour
             }
             else
             {
-                // On repart d'une salle existante --> évite les blocages
+                // On repart d'une salle existante --> ï¿½vite les blocages
                 print("blocage");
                 current = activeRoomsData[Random.Range(0, activeRoomsData.Count - 1)];
             }
@@ -152,7 +152,7 @@ public class DungeonManager : MonoBehaviour
                         map[next.x, next.y].SetRoomType(DungeonData.RoomType.Normal);
 
 
-                        //Debug.Log("Je suis en " + current.x + " / " + current.y + " -> et je génère en -> " + next.x + " / " + next.y);
+                        //Debug.Log("Je suis en " + current.x + " / " + current.y + " -> et je gï¿½nï¿½re en -> " + next.x + " / " + next.y);
 
 
                         activeRoomsData.Add(next);
@@ -182,7 +182,7 @@ public class DungeonManager : MonoBehaviour
             }
             else
             {
-                // On repart d'une salle existante --> évite les blocages
+                // On repart d'une salle existante --> ï¿½vite les blocages
                 print("blocage");
                 current = activeRoomsData[Random.Range(0, activeRoomsData.Count - 1)];
             }

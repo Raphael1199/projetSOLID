@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -29,5 +30,11 @@ public class Weapon : Equipement
     public virtual void Attack(IAttackable target)
     {
         target.GetAttacked(damage);
+    }
+
+    public override void GetPickedUp(PlayerCharacter player)
+    {
+        itemCollider.enabled = false;
+        player.EquipItem(this);
     }
 }

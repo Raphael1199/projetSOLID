@@ -829,11 +829,6 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 8944336655422409496, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
   m_PrefabInstance: {fileID: 1042320325}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1809879271 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8366803808518363679, guid: 4a08c57162b53f04884dbada318929a2, type: 3}
-  m_PrefabInstance: {fileID: 7536933904537486165}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2051190017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1199,18 +1194,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 46110195854325660, guid: 4a08c57162b53f04884dbada318929a2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 46110195854325660, guid: 4a08c57162b53f04884dbada318929a2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 46110195854325660, guid: 4a08c57162b53f04884dbada318929a2, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.08
-      objectReference: {fileID: 0}
     - target: {fileID: 421833642198575200, guid: 4a08c57162b53f04884dbada318929a2, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1255,16 +1238,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7665408512201813805, guid: 4a08c57162b53f04884dbada318929a2, type: 3}
-      propertyPath: hand
-      value: 
-      objectReference: {fileID: 1809879271}
-    - target: {fileID: 7665408512201813805, guid: 4a08c57162b53f04884dbada318929a2, type: 3}
-      propertyPath: equipements.equippedWeapon
-      value: 
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4656028613293892891, guid: 4a08c57162b53f04884dbada318929a2, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

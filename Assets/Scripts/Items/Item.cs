@@ -6,6 +6,8 @@ public class Item : MonoBehaviour
 {
     [SerializeField]
     private string itemName;
+    [SerializeField]
+    protected Collider itemCollider;
 
     // Getters
     public string getName()
@@ -13,12 +15,12 @@ public class Item : MonoBehaviour
         return itemName;
     }
 
-    // Méthode spécifique à réécrire
+    // Mï¿½thode spï¿½cifique ï¿½ rï¿½ï¿½crire
     public virtual void UseItem(PlayerCharacter player)
     {
     }
 
-    public virtual void GetPickedUp()
+    public virtual void GetPickedUp(PlayerCharacter player)
     {
         Destroy(gameObject);
     }

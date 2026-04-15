@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 4733573016024133724}
   - component: {fileID: 5390744373847533923}
   - component: {fileID: 2259128691995784948}
-  - component: {fileID: 4656028613293892891}
+  - component: {fileID: 9218203976484245951}
   - component: {fileID: 2897642999746987920}
   - component: {fileID: 1849465597603472954}
   - component: {fileID: 1923012021217890428}
@@ -105,6 +105,7 @@ Transform:
   - {fileID: 46110195854325660}
   - {fileID: 5515043124782028762}
   - {fileID: 6869865159193010367}
+  - {fileID: 4662770623394106552}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5390744373847533923
@@ -154,7 +155,7 @@ CharacterController:
   m_SkinWidth: 0.02
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.93, z: 0}
---- !u!114 &4656028613293892891
+--- !u!114 &9218203976484245951
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,9 +164,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 421833642198575200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 9529195b58294bd40ac4cc1436b58422, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCharacterController
   MoveSpeed: 2
   SprintSpeed: 5.335
   RotationSmoothTime: 0.12
@@ -174,21 +175,11 @@ MonoBehaviour:
   LandingAudio: {fileID: 0}
   AudioFoley: {fileID: 0}
   LandingAudioClip: {fileID: 8300000, guid: ff697d3070687ce4583faa0561a145a2, type: 3}
-  FootstepAudioClips:
-  - {fileID: 8300000, guid: 72f526a6a9890f643a88e85a61c86c8a, type: 3}
-  - {fileID: 8300000, guid: 85016e0f2b01da248b9663dd49a161b0, type: 3}
-  - {fileID: 8300000, guid: 186de84b3207156479abe98f4958fed0, type: 3}
-  - {fileID: 8300000, guid: 1a91fcd19acf1e54bba0945d9f390849, type: 3}
-  - {fileID: 8300000, guid: 14e8a8d2158bec840b56c54f5266e692, type: 3}
-  - {fileID: 8300000, guid: 29841e7d5bbfb5b419c9ad16ca8bc4c1, type: 3}
-  - {fileID: 8300000, guid: dd1af302b8902684d9381de1f2d3a5af, type: 3}
-  - {fileID: 8300000, guid: 67c8b33e424ccdc4486edf538ab91c5a, type: 3}
-  - {fileID: 8300000, guid: 274649b0e221539409070ebf6c18918b, type: 3}
-  - {fileID: 8300000, guid: a3194b8bbc96ef84fab1f98f4b7dae3e, type: 3}
-  FootstepAudioVolume: 0.3
+  FootstepAudioClips: []
+  FootstepAudioVolume: 0.5
   JumpHeight: 1.2
   Gravity: -15
-  JumpTimeout: 0.3
+  JumpTimeout: 0.5
   FallTimeout: 0.15
   Grounded: 1
   GroundedOffset: -0.14
@@ -201,6 +192,11 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
+  ___range: 6942
+  playerCharacter: {fileID: 7665408512201813805}
+  ShootingMask:
+    serializedVersion: 2
+    m_Bits: 119
 --- !u!114 &2897642999746987920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +230,7 @@ MonoBehaviour:
   look: {x: 0, y: 0}
   jump: 0
   sprint: 0
+  aim: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
@@ -351,15 +348,14 @@ MonoBehaviour:
   maxHealth: 20
   hitFX: {fileID: 0}
   killFX: {fileID: 0}
+  hand: {fileID: 8366803808518363679}
   playerName: 
   inventory:
     items: []
     itemCount: 0
   equipements:
     equippedWeapon: {fileID: 0}
-    equippedHelmet: {fileID: 0}
-    equippedChest: {fileID: 0}
-    equippedBoots: {fileID: 0}
+    equippedArmor: {fileID: 0}
 --- !u!136 &2380302535705428134
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -602,6 +598,7 @@ Transform:
   - {fileID: 6022168416018469748}
   - {fileID: 2864331047574293738}
   - {fileID: 679169790041172687}
+  - {fileID: 215437734184790195}
   m_Father: {fileID: 4604424478188107587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1333896866218762086
@@ -1561,6 +1558,51 @@ Transform:
   - {fileID: 3657685661972005625}
   m_Father: {fileID: 1141103846998694412}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4872710206263016915
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4662770623394106552}
+  - component: {fileID: 5579587773846930783}
+  m_Layer: 3
+  m_Name: PlayerAttackComponent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4662770623394106552
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4872710206263016915}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4733573016024133724}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5579587773846930783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4872710206263016915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07b45a6b8d9a09c45886a6f648668c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttackComponent
+  player: {fileID: 9218203976484245951}
 --- !u!1 &4992149899858935930
 GameObject:
   m_ObjectHideFlags: 0
@@ -2129,7 +2171,7 @@ Transform:
   m_GameObject: {fileID: 7128071736310065585}
   serializedVersion: 2
   m_LocalRotation: {x: 0.09688225, y: -0, z: -0, w: 0.99529594}
-  m_LocalPosition: {x: 0, y: 1.2200012, z: 0}
+  m_LocalPosition: {x: 0.11, y: 1.65, z: 0.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2389,6 +2431,37 @@ Transform:
   - {fileID: 8736659352459970191}
   m_Father: {fileID: 3764253196452689851}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8366803808518363679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 215437734184790195}
+  m_Layer: 3
+  m_Name: itemslot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &215437734184790195
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8366803808518363679}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 0.005, y: -0.057, z: -0.183}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 5172334821535911241}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 90}
 --- !u!1 &8473345150800546968
 GameObject:
   m_ObjectHideFlags: 0

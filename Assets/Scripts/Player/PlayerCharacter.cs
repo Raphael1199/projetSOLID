@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class PlayerCharacter : LivingObject , IAttackable
+public class PlayerCharacter : LivingObject, IAttackable
 {
+    [SerializeField]
+    private GameObject hand;
     [SerializeField]
     private string playerName;
 
@@ -56,6 +58,9 @@ public class PlayerCharacter : LivingObject , IAttackable
     public void EquipItem(Equipement equipement)
     {
         equipements.EquipItem(equipement);
+        equipement.transform.SetParent(hand.transform);
+        equipement.transform.position = hand.transform.position;
+        equipement.transform.rotation = hand.transform.rotation;
     }
 
     public void GrabItem(Item itemPickedUp)
@@ -69,7 +74,7 @@ public class PlayerCharacter : LivingObject , IAttackable
     }
 
 
-    
+
     private void OnTriggerEnter(Collider other)
     {
         other.transform.TryGetComponent<Item>(out Item item);
@@ -77,7 +82,7 @@ public class PlayerCharacter : LivingObject , IAttackable
         {
             print("ça touche");
             GrabItem(item);
-            item.GetPickedUp();
+            item.GetPickedUp(this);
         }
     }
 }
