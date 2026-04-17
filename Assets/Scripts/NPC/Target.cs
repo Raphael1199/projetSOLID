@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Target : LivingObject, IAttackable
 {
-    public void GetAttacked(int damage)
+    public override void GetAttacked(int damage)
     {
-        LoseHP(damage);
+        base.GetAttacked(damage);
         if (hp <= 0)
         {
             Destroy(gameObject);

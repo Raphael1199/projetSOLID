@@ -18,7 +18,7 @@ public class DungeonManager : MonoBehaviour
 
     [SerializeField]
     private List<Vector2Int> activeRoomsData = new List<Vector2Int>();
-    public List<DungeonRoom> activeRooms = new List<DungeonRoom>();
+    private List<DungeonRoom> activeRooms = new List<DungeonRoom>();
 
     Vector2Int[] directions = {
     new Vector2Int(1, 0) ,  // droite
@@ -29,7 +29,6 @@ public class DungeonManager : MonoBehaviour
 
     public GameObject roomToSpawn;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         map = new DungeonData[width, depth];
@@ -44,12 +43,6 @@ public class DungeonManager : MonoBehaviour
         startPos = new Vector2Int(0, 0);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public List<DungeonRoom> GetDungeonRooms()
     {
         return activeRooms;
@@ -57,15 +50,14 @@ public class DungeonManager : MonoBehaviour
 
     public void StartGenerating()
     {
-        //StartCoroutine(GenerateMapRoutine(startPos, roomAmount));
         GenerateMap(startPos, roomAmount);
+        activeRooms[0].GetEnemyGenerator().SetShouldSpawnEnemy(false);
     }
 
     private IEnumerator GenerateMapRoutine(Vector2Int start, int maxRoomCount)
     {
         Vector2Int current = start;
         Vector2Int previous = start;
-        //activeRoomsData.Add(current);
 
         int currentCount = 0;
 
@@ -78,7 +70,6 @@ public class DungeonManager : MonoBehaviour
             {
                 Vector2Int next = dir;
 
-                /////////////////////////////////////////////////////////////////
                 if (IsInsideGrid(next))
                 {
                     bool roomExists = map[next.x, next.y] != null;
@@ -87,29 +78,18 @@ public class DungeonManager : MonoBehaviour
                         map[next.x, next.y] = new DungeonData();
                         map[next.x, next.y].SetRoomType(DungeonData.RoomType.Normal);
 
-
-                        //Debug.Log("Je suis en " + current.x + " / " + current.y + " -> et je g�n�re en -> " + next.x + " / " + next.y);
-
-
                         activeRoomsData.Add(next);
 
                         previous = current;
                         current = next;
 
                         GameObject createdRoom = Instantiate(roomToSpawn, new Vector3(current.x * 30, 0, current.y * 30), Quaternion.identity);
-
-                        //createdRoom.GetComponent<DungeonRoom>().SetDungeonData(map[current.x, current.y]);
                         createdRoom.name = currentCount.ToString();
 
                         map[current.x, current.y].SetRoom(createdRoom.GetComponent<DungeonRoom>());
                         map[current.x, current.y].setIsVisited(true);
 
                         activeRooms.Add(createdRoom.GetComponent<DungeonRoom>());
-
-                        //Debug.Log(map[current.x, current.y].GetRoom());
-                        //print("-----------------------------------------");
-                        //Debug.Log(map[previous.x, previous.y].GetRoom());
-
                         ClearWalls(previous, current);
 
                         currentCount++;
@@ -118,19 +98,16 @@ public class DungeonManager : MonoBehaviour
             }
             else
             {
-                // On repart d'une salle existante --> �vite les blocages
                 print("blocage");
                 current = activeRoomsData[Random.Range(0, activeRoomsData.Count - 1)];
             }
         }
-        //yield return new WaitForEndOfFrame();
     }
 
     private void GenerateMap(Vector2Int start, int maxRoomCount)
     {
         Vector2Int current = start;
         Vector2Int previous = start;
-        //activeRoomsData.Add(current);
 
         int currentCount = 0;
 
@@ -142,7 +119,6 @@ public class DungeonManager : MonoBehaviour
             {
                 Vector2Int next = dir;
 
-                /////////////////////////////////////////////////////////////////
                 if (IsInsideGrid(next))
                 {
                     bool roomExists = map[next.x, next.y] != null;
@@ -152,7 +128,6 @@ public class DungeonManager : MonoBehaviour
                         map[next.x, next.y].SetRoomType(DungeonData.RoomType.Normal);
 
 
-                        //Debug.Log("Je suis en " + current.x + " / " + current.y + " -> et je g�n�re en -> " + next.x + " / " + next.y);
 
 
                         activeRoomsData.Add(next);
@@ -161,18 +136,12 @@ public class DungeonManager : MonoBehaviour
                         current = next;
 
                         GameObject createdRoom = Instantiate(roomToSpawn, new Vector3(current.x * 30, 0, current.y * 30), Quaternion.identity);
-
-                        //createdRoom.GetComponent<DungeonRoom>().SetDungeonData(map[current.x, current.y]);
                         createdRoom.name = currentCount.ToString();
 
                         map[current.x, current.y].SetRoom(createdRoom.GetComponent<DungeonRoom>());
                         map[current.x, current.y].setIsVisited(true);
 
                         activeRooms.Add(createdRoom.GetComponent<DungeonRoom>());
-
-                        //Debug.Log(map[current.x, current.y].GetRoom());
-                        //print("-----------------------------------------");
-                        //Debug.Log(map[previous.x, previous.y].GetRoom());
 
                         ClearWalls(previous, current);
 
@@ -182,12 +151,10 @@ public class DungeonManager : MonoBehaviour
             }
             else
             {
-                // On repart d'une salle existante --> �vite les blocages
                 print("blocage");
                 current = activeRoomsData[Random.Range(0, activeRoomsData.Count - 1)];
             }
         }
-        //yield return new WaitForEndOfFrame();
     }
 
     private Vector2Int GetRandomDirection(Vector2Int currentCell)

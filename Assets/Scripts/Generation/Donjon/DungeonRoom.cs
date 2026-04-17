@@ -13,6 +13,8 @@ public class DungeonRoom : MonoBehaviour
     private GameObject topDoor;
     [SerializeField]
     private GameObject downDoor;
+    [SerializeField]
+    private EnemyGenerator enemyGenerator;
 
     private GameObject[] doorToOpen = new GameObject[4];
 
@@ -32,6 +34,11 @@ public class DungeonRoom : MonoBehaviour
     public Vector3 GetSpawnPoint()
     {
         return playerSpawnPoint.position;
+    }
+
+    public EnemyGenerator GetEnemyGenerator()
+    {
+        return enemyGenerator;
     }
 
 
@@ -54,18 +61,7 @@ public class DungeonRoom : MonoBehaviour
     {
         downDoor.SetActive(false);
     }
-
-    /// <summary>
-    /// ///////////////////////////////////////////////
-    /// 
-    /// 
-    /// 
-    /// 
-    /// 
-    /// 
-    /// 
-    /// 
-    /// </summary>
+    
     public void OpenAllRequiredDoor()
     {
         foreach (var item in doorToOpen)

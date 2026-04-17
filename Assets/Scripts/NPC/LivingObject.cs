@@ -1,11 +1,11 @@
+using Unity.Mathematics;
 using UnityEngine;
 
-public class LivingObject : MonoBehaviour
+public abstract class LivingObject : MonoBehaviour, IAttackable
 {
     [Header("Living")]
     [SerializeField] protected int hp;
     [SerializeField] protected int maxHealth = 20;
-    [SerializeField] protected FX hitFX = null;
     [SerializeField] protected FX killFX = null;
 
     private void Start()
@@ -13,7 +13,7 @@ public class LivingObject : MonoBehaviour
         hp = maxHealth;
     }
 
-    public float getHealth()
+    public int getHealth()
     {
         return hp;
     }
@@ -31,7 +31,7 @@ public class LivingObject : MonoBehaviour
         //Level.DestroyLivingObject(this);
     }
 
-    public void getHP(int hpGot)
+    public void gainHP(int hpGot)
     {
         hp += hpGot;
     }
@@ -45,5 +45,15 @@ public class LivingObject : MonoBehaviour
     {
         hp -= dmg;
     }
+    
 
+    public virtual void GetAttacked(int damage)
+    {
+        LoseHP(damage);
+    }
+
+    public virtual void PlayhitFx(FX hitFx, Vector3 positionFx)
+    {
+        Instantiate(hitFx, positionFx, transform.rotation);
+    }
 }

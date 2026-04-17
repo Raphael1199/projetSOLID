@@ -196,7 +196,7 @@ MonoBehaviour:
   playerCharacter: {fileID: 7665408512201813805}
   ShootingMask:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 128
 --- !u!114 &2897642999746987920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,9 +344,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a3927adb76914c46b49bb7283e28f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
+  hp: 20
   maxHealth: 20
-  hitFX: {fileID: 0}
   killFX: {fileID: 0}
   hand: {fileID: 8366803808518363679}
   playerName: 

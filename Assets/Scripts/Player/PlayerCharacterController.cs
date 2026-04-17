@@ -13,13 +13,6 @@ public class PlayerCharacterController : ThirdPersonController
     private LayerMask ShootingMask;
 
 
-    protected override void Start()
-    {
-        base.Start();
-        print("classeFille");
-
-    }
-
     protected override void Move()
     {
         // set target speed based on move speed, sprint speed and if sprint is pressed
@@ -144,8 +137,6 @@ public class PlayerCharacterController : ThirdPersonController
 
         float raycastLength = transform.position.x - _mainCamera.transform.position.x;
 
-        print("ça shoot le ray");
-
         // 2. Lancer le rayon vers là ou on regarde
         if (Physics.Raycast(_mainCamera.transform.position, _mainCamera.transform.forward, out hit, (int)raycastLength + range, ShootingMask))
         {
@@ -159,13 +150,13 @@ public class PlayerCharacterController : ThirdPersonController
             if (target != null)
             {
                 playerCharacter.getEquipements().GetWeapon().Attack(target);
+                target.PlayhitFx(playerCharacter.getEquipements().GetWeapon().getHitFX(), hit.point);
             }
 
         }
         else
         {
             Debug.DrawRay(_mainCamera.transform.position, transform.TransformDirection(_mainCamera.transform.forward) * ((int)raycastLength + range), Color.white);
-            Debug.Log("Did not Hit");
         }
     }
 }

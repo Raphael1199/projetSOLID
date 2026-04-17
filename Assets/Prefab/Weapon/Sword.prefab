@@ -130,6 +130,7 @@ MonoBehaviour:
   itemCollider: {fileID: 2345611475279452822}
   damage: 10
   range: 10
+  hitFx: {fileID: 130780823452048600, guid: e51f8b4983c0be94ea6ced88d145605e, type: 3}
 --- !u!1001 &1520442674261807761
 PrefabInstance:
   m_ObjectHideFlags: 0

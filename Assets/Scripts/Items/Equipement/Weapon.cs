@@ -10,6 +10,8 @@ public class Weapon : Equipement
     protected int damage;
     [SerializeField]
     protected int range;
+    [SerializeField]
+    protected FX hitFx;
 
     // Getter
     public int getDamage() {
@@ -19,6 +21,11 @@ public class Weapon : Equipement
     public int getRange()
     {
         return range;
+    }
+
+    public FX getHitFX()
+    {
+        return hitFx;
     }
 
     // M�thode sp�cifique

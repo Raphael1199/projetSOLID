@@ -1,6 +1,8 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerCharacter : LivingObject, IAttackable
+public class PlayerCharacter : LivingObject
 {
     [SerializeField]
     private GameObject hand;
@@ -28,8 +30,6 @@ public class PlayerCharacter : LivingObject, IAttackable
     {
         return inventory;
     }
-
-
 
     // Méthodes spécifiques
     public void Attack(int damage)
@@ -68,13 +68,6 @@ public class PlayerCharacter : LivingObject, IAttackable
         inventory.AddItem(itemPickedUp);
     }
 
-    public void GetAttacked(int damage)
-    {
-        LoseHealth(damage);
-    }
-
-
-
     private void OnTriggerEnter(Collider other)
     {
         other.transform.TryGetComponent<Item>(out Item item);
@@ -84,5 +77,16 @@ public class PlayerCharacter : LivingObject, IAttackable
             GrabItem(item);
             item.GetPickedUp(this);
         }
+    }
+
+    public override void GetAttacked(int damage)
+    {
+        base.GetAttacked(damage);
+        if (!isAlive())
+        {
+            GameManager.Instance.FinishGame();
+        }
+        GameManager.Instance.UpdateUI();
+
     }
 }

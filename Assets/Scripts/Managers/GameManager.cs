@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -6,13 +8,17 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private DungeonManager dungeonManager;
+    [SerializeField]
+    private WeaponSpawner weaponSpawner;
+    [SerializeField]
+    private UIManager UIManager;
 
+    public GameObject player;
     public static GameManager Instance
+
     {
         get { return instance; }
     }
-
-    public GameObject player;
 
 
     public static GameManager GetInstance()
@@ -46,8 +52,9 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartGame();
-        dungeonManager.GetDungeonRooms();
         SpawnPlayer(dungeonManager.GetDungeonRooms()[0].GetSpawnPoint() + Vector3.up);
+        weaponSpawner.SpawnStartWeapon(dungeonManager.GetDungeonRooms()[0].GetSpawnPoint() + new Vector3(0, 1, 3));
+        UpdateUI();
     }
 
     public void SpawnPlayer(Vector3 playerStartPosition)
@@ -59,5 +66,22 @@ public class GameManager : MonoBehaviour
     private void StartGame()
     {
         dungeonManager.StartGenerating();
+    }
+
+    public void FinishGame()
+    {
+        StartCoroutine(LoseRoutine());
+    }
+
+    public IEnumerator LoseRoutine()
+    {
+        Destroy(player);
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(0);
+    }
+
+    public void UpdateUI()
+    {
+        UIManager.UpdateHP(player.GetComponent<PlayerCharacter>().getHealth());
     }
 }
